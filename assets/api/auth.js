@@ -1,37 +1,10 @@
-// const API_URL = 'http://192.168.1.114:1337/api';
+// auth.js
+const API_URL = 'https://school.acesoai.com/api';
 
-// export const login = async (username, password) => {
-//   try {
-//     const response = await fetch(`${API_URL}/auth/local`, {
-//       method: 'POST',
-//       headers: {
-//         'Content-Type': 'application/json',
-//       },
-//       body: JSON.stringify({
-//         identifier: username,
-//         password: password,
-//       }),
-//     });
-
-//     if (!response.ok) {
-//       const errorData = await response.json();
-//       console.error('Error response:', errorData);
-//       throw new Error(`Network response was not ok: ${response.statusText}`);
-//     }
-
-//     const data = await response.json();
-//     const { jwt, user } = data;
-//     return { token: jwt, userId: user.id };
-//   } catch (error) {
-//     console.error('Error logging in:', error);
-//     throw error;
-//   }
-// };
-
-import AsyncStorage from '@react-native-async-storage/async-storage';
-const API_URL = 'https://ec88-169-150-218-3.ngrok-free.app/api';
 export const login = async (username, password) => {
+
   try {
+    
     const response = await fetch(`${API_URL}/auth/local`, {
       method: 'POST',
       headers: {
@@ -43,14 +16,15 @@ export const login = async (username, password) => {
       }),
     });
 
+    const responseBody = await response.json();
+    console.log('Response body:', responseBody);
+
     if (!response.ok) {
-      const errorData = await response.json();
-      console.error('Error response:', errorData);
-      throw new Error(`Network response was not ok: ${response.statusText}`);
+      console.error('Error response:', responseBody);
+      throw new Error(`Network response was not ok: ${responseBody.message}`);
     }
 
-    const data = await response.json();
-    const { jwt, user } = data;
+    const { jwt, user } = responseBody;
 
     if (!jwt || !user) {
       throw new Error('Invalid response structure');
@@ -62,37 +36,3 @@ export const login = async (username, password) => {
     throw error;
   }
 };
-
-
-
-// export const login = async (username, password) => {
-//   try {
-//     const response = await fetch(`${API_URL}/auth/local`, {
-//       method: 'POST',
-//       headers: {
-//         'Content-Type': 'application/json',
-//       },
-//       body: JSON.stringify({
-//         identifier: username,
-//         password: password,
-//       }),
-//     });
-
-//     if (!response.ok) {
-//       const errorData = await response.json();
-//       console.error('Error response:', errorData);
-//       throw new Error(`Network response was not ok: ${response.statusText}`);
-//     }
-
-//     const data = await response.json();
-//     const { jwt, user } = data;
-
-//     // Store the token
-//     await AsyncStorage.setItem('userToken', jwt);
-
-//     return { token: jwt, userId: user.id };
-//   } catch (error) {
-//     console.error('Error logging in:', error);
-//     throw error;
-//   }
-// };

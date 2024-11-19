@@ -1,116 +1,4 @@
 
-// import React, { useState } from 'react';
-// import { View, Text, TextInput, Button, Image, StyleSheet, TouchableOpacity } from 'react-native';
-// import AsyncStorage from '@react-native-async-storage/async-storage';
-// import { login } from '../api/auth'; // Adjust the path as needed
-// const logo = require("../logo.png");
-
-// const LoginScreen = ({ navigation }) => {
-//   const [username, setUsername] = useState('');
-//   const [password, setPassword] = useState('');
-//   const [error, setError] = useState('');
-
-//   const handleLogin = async () => {
-//     try {
-//       const { token, userId } = await login(username, password);
-//       if (!token || !userId) {
-//         throw new Error('Invalid login response');
-//       }
-//       await AsyncStorage.setItem('userToken', token);
-//       console.log('Token:', token); ////check from token
-//       navigation.replace('StudentRegister', { userId });
-//     } catch (error) {
-//       setError('Login failed. Please check your credentials.');
-//       console.error('Login failed:', error);
-//     }
-//   };
-
-//   return (
-//     <View style={styles.container}>
-//       <Image source={logo} style={styles.logo} />
-//       <Text style={styles.title}>الثانوية الشرعية للبنات في عين منين</Text>
-
-//       <Text style={styles.label}>اسم المستخدم:</Text>
-//       <TextInput
-//         style={styles.input}
-//         value={username}
-//         onChangeText={setUsername}
-//         placeholder="أدخل اسم المستخدم"
-//       />
-//       <Text style={styles.label}>كلمة المرور:</Text>
-//       <TextInput
-//         style={styles.input}
-//         value={password}
-//         onChangeText={setPassword}
-//         placeholder="أدخل كلمة المرور"
-//         secureTextEntry
-//       />
-//       {error ? <Text style={styles.error}>{error}</Text> : null}
-//       <TouchableOpacity style={styles.button} onPress={handleLogin}>
-//         <Text style={styles.buttonText}>تسجيل دخول</Text>
-//       </TouchableOpacity>
-//     </View>
-//   );
-// };
-
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     justifyContent: 'center',
-//     alignItems: 'center',
-//     padding: 20,
-//     paddingTop: 5,
-//     backgroundColor: '#fff',
-//   },
-//   logo: {
-//     width: 150,
-//     height: 150,
-//     marginBottom: 1,
-//   },
-//   title: {
-//     fontSize: 25,
-//     fontWeight: 'bold',
-//     textTransform: 'uppercase',
-//     textAlign: 'center',
-//     paddingVertical: 20,
-//     color: '#3c8659',
-//   },
-//   label: {
-//     fontSize: 18,
-//     fontWeight: 'bold',
-//     marginBottom: 5,
-//   },
-//   input: {
-//     width: '100%',
-//     padding: 10,
-//     borderWidth: 1,
-//     borderColor: '#3c8659',
-//     borderRadius: 5,
-//     marginBottom: 15,
-//   },
-//   button: {
-//     backgroundColor: '#3c8659',
-//     padding: 15,
-//     borderRadius: 10,
-//     alignItems: 'center',
-//     width: '75%',
-//     borderColor: 'gray',
-//     borderWidth: 1,
-//     justifyContent: 'center',
-//   },
-//   buttonText: {
-//     color: '#fff',
-//     fontSize: 20,
-//     fontWeight: 'bold',
-//   },
-//   error: {
-//     color: 'red',
-//     marginBottom: 10,
-//   },
-// });
-
-// export default LoginScreen;
-
 import React, { useState } from 'react';
 import { View, Text, TextInput, Image, StyleSheet, TouchableOpacity, Linking } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -130,7 +18,7 @@ const LoginScreen = ({ navigation }) => {
         throw new Error('Invalid login response');
       }
       await AsyncStorage.setItem('userToken', token);
-      console.log('Token:', token); ////check from token
+      console.log('Token:', token);
       navigation.replace('StudentRegister', { userId });
     } catch (error) {
       setError('Login failed. Please check your credentials.');
@@ -140,7 +28,7 @@ const LoginScreen = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-          <Image source={logo} style={styles.logo} />
+      <Image source={logo} style={styles.logo} />
       <Text style={styles.title}>الثانوية الشرعية للبنات في عين منين</Text>
 
       <Text style={styles.label}>اسم المستخدم:</Text>
@@ -174,6 +62,7 @@ const LoginScreen = ({ navigation }) => {
     </View>
   );
 };
+
 
 const styles = StyleSheet.create({
   container: {
